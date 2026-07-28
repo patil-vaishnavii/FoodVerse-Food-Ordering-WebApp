@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">🍽️ Our Restaurants</h2>
+
+<div class="row">
+
+    {% for restaurant in restaurants %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow h-100">
+
+            {% if restaurant.image %}
+                <img src="{{ restaurant.image.url }}"
+                     class="card-img-top"
+                     alt="{{ restaurant.name }}"
+                     style="height:220px; object-fit:cover;">
+            {% else %}
+                <img src="https://placehold.co/600x400?text=Restaurant"
+                     class="card-img-top"
+                     alt="No Image">
+            {% endif %}
+
+            <div class="card-body">
+
+                <h4>{{ restaurant.name }}</h4>
+
+                <p>{{ restaurant.description }}</p>
+
+                <p>📍 {{ restaurant.address }}</p>
+
+                <p>⭐ {{ restaurant.rating }}</p>
+
+                <a href="#" class="btn btn-primary w-100">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+        <h3>No Restaurants Found</h3>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
