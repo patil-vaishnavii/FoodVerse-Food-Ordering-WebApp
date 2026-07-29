@@ -42,7 +42,7 @@
 
                 <p>⭐ {{ restaurant.rating }}</p>
 
-                <a href="#" class="btn btn-primary w-100">
+                <a href="{% url 'restaurant_detail' restaurant.id %}" class="btn btn-primary w-100">
                     View Menu
                 </a>
 

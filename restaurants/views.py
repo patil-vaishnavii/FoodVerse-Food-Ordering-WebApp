@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import Restaurant
 
 def restaurant_list(request):
@@ -11,3 +11,19 @@ def restaurant_list(request):
 
   return render(request,"restaurants/restaurant_list.html",context)
 
+
+def restaurant_detail(request,id):
+
+  restaurant = get_object_or_404(
+    Restaurant,
+    id=id
+  )
+
+  menu_items = restaurant.menuitem_set.all()
+  return render(
+    request,'restaurants/restaurant_detail.html',
+    {
+      'restaurant': restaurant,
+      'menu_items': menu_items,
+    }
+  )
